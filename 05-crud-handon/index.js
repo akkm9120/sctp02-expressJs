@@ -5,6 +5,12 @@ const app = express ();
 const hbs = require("hbs");
 
 app.set("view engine", "hbs");
+app.use(express.urlencoded({ extended: false }));
+
+const handlebarHelpers = require('handlebars-helpers')({
+    handlebars: hbs.handlebars
+});
+
 
 const foodRecords = [
     {
@@ -37,9 +43,49 @@ app.get("/",function(req,res){
 })
 
 app.get("/delete-listing/:id",(req,res)=>{
-    res.render("delete-listing",{
-        
+    const idToDel = req.params.id;
+    const delRow = foodRecords.find(function(record){
+        return record.id == idToDel;
     })
+
+    res.render("delete-listing",{
+        record: delRow
+    });
+})
+
+
+app.post("/delete-listing/:id",(req,res)=>{
+    const id = req.params.id ;
+    
+    const indexToDelete = foodRecords.findIndex(function(record){
+        return record.id == id;
+    })
+
+    foodRecords.splice(indexToDelete,1);
+   res.redirect("/");
+})
+
+
+app.get("/update/:item",(req,res)=>{
+    const id = req.params.item;
+
+    const updateItem = foodRecords.find(function(record){
+        return record.id == id;
+    })
+
+
+    console.log(updateItem)
+    res.render("update",{
+        record : updateItem
+    })
+})
+
+app.post("/update/:item",(req,res)=>{
+    const id = req.params.item;
+    const indexUpdate = foodRecords.findIndex(function(record){
+        return record.id == id;
+    })
+
 })
 
 app.listen(3000,function (){
