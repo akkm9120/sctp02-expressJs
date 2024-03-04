@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Second hand sales</h1>
+    <h1>CICO Food Tracker</h1>
+
+    <h2>Logged Food</h2>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Payments</th>
-                <th>Type</th> 
+                <th>Food name</th>
+                <th>Calories</th>
+                <th>Meal</th>
+                <th>Tags</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            {{#each products}}
-                <td>{{this.ID}}</td>
-                <td>{{this.title}}</td>
-                <td>{{this.price}}</td>
-                <td>{{this.payments}}</td>
-                <td>{{this.type}}</td>
+            {{#each foodRecords}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.foodName}}</td>
+                <td>{{this.calories}}</td>
+                <td>{{this.meal}}</td>
+                <td>{{this.tags}}</td>
+                <td>
+                    <a href="/delete/{{this.id}}">Delete</a>
+                </td>
+            </tr>
             {{/each}}
         </tbody>
     </table>
 </body>
+
 </html>
