@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Second hand sales</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Payments</th>
+                <th>Type</th> 
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+                <td>{{this.ID}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.payments}}</td>
+                <td>{{this.type}}</td>
+            {{/each}}
+        </tbody>
+    </table>
+</body>
+</html>
